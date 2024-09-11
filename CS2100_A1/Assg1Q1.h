@@ -26,6 +26,7 @@ const char *student_tut_grp = "<fill in your tutorial group ID here>";
 int twos_to_ones(int x)
 {
     //< Your code here...>
+    return 0;
 }
 
 /**
@@ -73,6 +74,7 @@ void binstr(int i, int n, char *s)
 int str2int(char *s, int n)
 {
     //< Your code here...>
+    return 0;
 }
 
 /**
@@ -94,6 +96,7 @@ int str2int(char *s, int n)
 int validate_1s_complement(int x, int n)
 {
     //< Your code here...>
+    return 0;
 }
 
 /**
@@ -110,6 +113,7 @@ int validate_1s_complement(int x, int n)
 int check_carryout(char *carry_str)
 {
     //< Your code here...>
+    return 0;
 }
 
 /**
@@ -134,6 +138,7 @@ int check_carryout(char *carry_str)
 int check_overflow(char *op1, char *op2, char *sum)
 {
     //< Your code here...>
+    return 0;
 }
 
 /**
@@ -172,5 +177,6 @@ int check_overflow(char *op1, char *op2, char *sum)
 int perform_addition(int n, char *x, char *y, char *z, char *c)
 {
     //< Your code here...>
+    return 0;
 }
 

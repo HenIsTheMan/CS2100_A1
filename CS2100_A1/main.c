@@ -5,27 +5,29 @@
 #include <stdio.h>
 #include <stdlib.h> // Provides the exit() function to abort.
 
-extern const char *student_number;
-extern const char *student_name;
-extern const char *student_tut_grp;
+//extern const char *student_number;
+//extern const char *student_name;
+//extern const char *student_tut_grp;
+//
+//extern int twos_to_ones(int x);
+//
+//extern void binstr(int i, int n, char *s);
+//
+//extern int str2int(char *s, int n);
+//
+//extern int validate_1s_complement(int x, int n);
+//
+//extern int check_carryout(char *carry_str);
+//
+//extern int check_overflow(char *op1, char *op2, char *sum);
+//
+//extern int perform_addition(int n, char *x, char *y, char *z, char *c);
 
-extern int twos_to_ones(int x);
-
-extern void binstr(int i, int n, char *s);
-
-extern int str2int(char *s, int n);
-
-extern int validate_1s_complement(int x, int n);
-
-extern int check_carryout(char *carry_str);
-
-extern int check_overflow(char *op1, char *op2, char *sum);
-
-extern int perform_addition(int n, char *x, char *y, char *z, char *c);
+#include "Assg1Q1.h"
 
 int main(int argc, char *argv[])
 {
-    int x, y, z, n, check;
+    int x, y, n, check;
     int x1s, y1s;
     char x_str[33], y_str[33], z1_str[33], z2_str[33], one_str[33]; 
     char c1_str[34], c2_str[34]; // Holds the carries. It is 33 bits because the MSB is the carry out.
@@ -38,7 +40,7 @@ int main(int argc, char *argv[])
     printf("Tutorial group: %s\n", student_tut_grp);
     printf("======================================\n");
     printf("How many bits do you want to do this in (must be [2, 32])? ");
-    scanf("%d", &n);
+    scanf_s("%d", &n);
 
     // Check if n is valid.
     if ((n < 2) || (n>33)) {
@@ -47,7 +49,7 @@ int main(int argc, char *argv[])
     }
 
     printf("\nInput your first number (as signed decimal): ");
-    scanf("%d", &x);
+    scanf_s("%d", &x);
 
     // Check that x will fit into n bits. Note that y here is still in two's complement.
     check = validate_1s_complement(x, n); 
@@ -62,7 +64,7 @@ int main(int argc, char *argv[])
     x1s = twos_to_ones(x);
 
     printf("\nInput your second number (as signed decimal): ");
-    scanf("%d", &y);
+    scanf_s("%d", &y);
 
     // Check that y will fit into n bits. Note that y here is still in two's complement.
     check = validate_1s_complement(y, n); 

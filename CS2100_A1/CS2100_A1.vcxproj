@@ -139,7 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include="Assg1Q1.c" />
+    <None Include="Assg1Q1.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c" />
