@@ -53,14 +53,33 @@ int twos_to_ones(int x)
  **/
 void binstr(int i, int n, char *s)
 {
-    int valInOnesComplement = twos_to_ones(i);
+    int isNegative = 0;
 
-    for(int index = n - 1; index >= 0; ++i){
-        if(i == 0){
-            s[index] = '0';
-            continue;
+    if(i < 0){
+        isNegative = 1;
+        i = -i;
+    }
+
+    int index;
+    int limit = 32 - n;
+
+    if(isNegative){ //Branch outside loop
+        for(index = 32; index > limit; --index){ //index = 32 since 32 bits
+            s[index] = (i % 2 == 1) ? '0' : '1'; //For flipping all bits since -ve 1's complement val
+            i /= 2;
+        }
+    } else{
+        for(index = 32; index > limit; --index){ //index = 32 since 32 bits
+            s[index] = (i % 2 == 1) ? '1' : '0';
+            i /= 2;
         }
     }
+
+    //* For sign extension
+    for(index = limit; index >= 0; --index){
+        s[index] = '0';
+    }
+    //*/
 }
 
 /**
