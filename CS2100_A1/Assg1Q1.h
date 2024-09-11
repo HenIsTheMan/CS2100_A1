@@ -174,8 +174,13 @@ int validate_1s_complement(int x, int n)
  **/
 int check_carryout(char *carry_str)
 {
-    //< Your code here...>
-    return 0;
+    /* Just in case
+    if(carry_str[0] < 48 || carry_str[0] > 49){ //If neither '0' nor '1'...
+        return INT_MIN;
+    }
+    //*/
+
+    return carry_str[0] - 48;
 }
 
 /**
