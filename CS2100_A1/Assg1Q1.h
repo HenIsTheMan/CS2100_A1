@@ -103,13 +103,32 @@ void binstr(int i, int n, char *s)
  **/
 int str2int(char *s, int n)
 {
-    int myVal = 0;
-
-    for(int i = 0; i < n; ++i){
-        myVal += s[i] << i;
+    if(n > 32){
+        return INT_MIN;
     }
 
-    return myVal;
+    int i;
+    int isNegative = 0;
+
+    if(s[0] == '1'){ //If sign bit is 1...
+        isNegative = 1;
+
+        for(i = 0; i < n; ++i){ //Convert to +ve val in bin
+            s[i] = (s[i] == '1') ? '0' : '1'; //For flipping all bits since -ve 1's complement val
+        }
+    }
+
+    int myVal = 0;
+
+    for(i = n - 1; i >= 0; --i){
+        if(s[i] < 48 || s[i] > 49){ //If neither '0' nor '1'...
+            return INT_MIN;
+        }
+
+        myVal += (s[i] - 48) << (n - i);
+    }
+
+    return isNegative ? -myVal : myVal; //Result will be in 2's complement
 }
 
 /**
