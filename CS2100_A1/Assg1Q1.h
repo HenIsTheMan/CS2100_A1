@@ -25,8 +25,12 @@ const char *student_tut_grp = "T36";
  **/
 int twos_to_ones(int x)
 {
-    //< Your code here...>
-    return 0;
+    if(x < 0){ //Only need to do sth when x is -ve
+        x = ~x + 1; //Negate -ve val to yield +ve val, done this way since 2's complement
+        x = ~x; //Get -ve val in 1's complement
+    }
+
+    return x;
 }
 
 /**
@@ -49,7 +53,14 @@ int twos_to_ones(int x)
  **/
 void binstr(int i, int n, char *s)
 {
-    //< Your code here...>
+    int valInOnesComplement = twos_to_ones(i);
+
+    for(int index = n - 1; index >= 0; ++i){
+        if(i == 0){
+            s[index] = '0';
+            continue;
+        }
+    }
 }
 
 /**
@@ -73,8 +84,13 @@ void binstr(int i, int n, char *s)
  **/
 int str2int(char *s, int n)
 {
-    //< Your code here...>
-    return 0;
+    int myVal = 0;
+
+    for(int i = 0; i < n; ++i){
+        myVal += s[i] << i;
+    }
+
+    return myVal;
 }
 
 /**
