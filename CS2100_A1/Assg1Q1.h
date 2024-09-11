@@ -149,8 +149,16 @@ int str2int(char *s, int n)
  **/
 int validate_1s_complement(int x, int n)
 {
-    //< Your code here...>
-    return 0;
+    //* Limits for range of 1's complement val
+    int upperLimit = (1 << (n - 1)) - 1;
+    int lowerLimit = -upperLimit;
+    //*/
+
+    if(x >= lowerLimit && x <= upperLimit){ //Checking if x is in range of [-(2^(n - 1) - 1), 2^(n - 1) - 1]
+        return 0;
+    }
+
+    return x < 0 ? lowerLimit : upperLimit;
 }
 
 /**
