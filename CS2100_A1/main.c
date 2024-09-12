@@ -1,32 +1,33 @@
-// YOU ARE NOT TO SUBMIT THIS FILE.
-// It is strictly for testing your code.
-//
-
 #include <stdio.h>
-#include <stdlib.h> // Provides the exit() function to abort.
 
-//extern const char *student_number;
-//extern const char *student_name;
-//extern const char *student_tut_grp;
-//
-//extern int twos_to_ones(int x);
-//
-//extern void binstr(int i, int n, char *s);
-//
-//extern int str2int(char *s, int n);
-//
-//extern int validate_1s_complement(int x, int n);
-//
-//extern int check_carryout(char *carry_str);
-//
-//extern int check_overflow(char *op1, char *op2, char *sum);
-//
-//extern int perform_addition(int n, char *x, char *y, char *z, char *c);
+/*
+Smallest input for 2 bits: -1
+Largest input for 2 bits: 1
+Smallest input for 32 bits: -2147483647
+Largest input for 32 bits: 2147483647
+
+extern const char *student_number;
+extern const char *student_name;
+extern const char *student_tut_grp;
+
+extern int twos_to_ones(int x); //Correct (checked by ensuring output -ve int [stored in 2's complement C int] is 1 less than input -ve int)
+
+extern void binstr(int i, int n, char *s);
+
+extern int str2int(char *s, int n);
+
+extern int validate_1s_complement(int x, int n); //Correct (checked by testing smallest and largest input for 2 and 32 bits)
+
+extern int check_carryout(char *carry_str);
+
+extern int check_overflow(char *op1, char *op2, char *sum);
+
+extern int perform_addition(int n, char *x, char *y, char *z, char *c);
+//*/
 
 #include "Assg1Q1.h"
 
-int main(int argc, char *argv[])
-{
+int main(){
     int x, y, n, check;
     int x1s, y1s;
     char x_str[33], y_str[33], z1_str[33], z2_str[33], one_str[33]; 
@@ -45,7 +46,7 @@ int main(int argc, char *argv[])
     // Check if n is valid.
     if ((n < 2) || (n>33)) {
        printf("Invalid number of bits. Unable to proceed. Exiting...\n");
-       exit(-1);
+       return -1;
     }
 
     printf("\nInput your first number (as signed decimal): ");
@@ -57,7 +58,7 @@ int main(int argc, char *argv[])
     if (check) {
        printf("\nSorry, but %d exceeds the range of a %d-bit one's complement representation. The limit is %d. Exiting...\n",
               x, n, check);
-       exit(-1);
+       return -1;
     }
 
     // The input x is in two's complement. Need to convert it to the one's complement equivalent.
@@ -72,7 +73,7 @@ int main(int argc, char *argv[])
     if (check) {
        printf("\nSorry, but %d exceeds the range of a %d-bit one's complement representation. The limit is %d. Exiting...\n",
               y, n, check);
-       exit(-1);
+       return -1;
     }
 
     // The input y is in two's complement. Need to convert it to the one's complement equivalent.
@@ -117,7 +118,7 @@ int main(int argc, char *argv[])
        // Check for overflow
        if (check_overflow(x_str, y_str, z2_str)) {
           printf("\nRESULT OVERFLOWED!!!\n");
-          exit(-1);
+          return -1;
        }
 
        // Everything correct. Print out the decimal value of the result.
@@ -127,7 +128,7 @@ int main(int argc, char *argv[])
        // Check for overflow
        if (check_overflow(x_str, y_str, z1_str)) {
           printf("\nRESULT OVERFLOWED!!!\n");
-          exit(-1);
+          return -1;
        }
 
        printf(" [FINAL ANSWER in one's complement]\n");
