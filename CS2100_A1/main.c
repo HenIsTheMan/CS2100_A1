@@ -12,7 +12,7 @@ extern const char *student_tut_grp;
 
 extern int twos_to_ones(int x); //Correct (checked by ensuring output -ve int [stored in 2's complement C int] is 1 less than input -ve int)
 
-extern void binstr(int i, int n, char *s);
+extern void binstr(int i, int n, char *s); //Correct (checked by comparing bin representations of +ve val and its -ve counterpart)
 
 extern int str2int(char *s, int n);
 
@@ -82,8 +82,18 @@ int main(){
     printf("\nThe one's complement addition process is as follows:\n\n");
 
     binstr(x1s, n, x_str);
-
     binstr(y1s, n, y_str);
+
+    printf("Converted X:   %s (%d)\n", x_str, x);
+    printf("Converted Y:   %s (%d) +\n", y_str, y);
+
+
+
+
+    //Above is correct
+
+
+
 
     perform_addition(n, x_str, y_str, z1_str, c1_str);
 
