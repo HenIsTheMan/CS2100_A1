@@ -268,7 +268,9 @@ int perform_addition(int n, char *x, char *y, char *z, char *c)
         //(for printing correct representation of same val in 32 bits instead of for calculations)
         z[i] = z[31 - n + 1];
 
-        c[i] = '0'; //Fill in remaining bits for c
+        //Fill in remaining bits for c by extension for check_carryout to work without n param
+        //Will not affect calculations as only n bits of c from the right are used
+        c[i] = c[31 - n + 1];
     }
 
     //* Null-termination

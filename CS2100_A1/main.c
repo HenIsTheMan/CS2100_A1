@@ -18,7 +18,7 @@ extern int str2int(char *s, int n); //Correct (checked)
 
 extern int validate_1s_complement(int x, int n); //Correct (checked by testing smallest and largest input for 2 and 32 bits)
 
-extern int check_carryout(char *carry_str);
+extern int check_carryout(char *carry_str); //Correct (checked)
 
 //Adding same vals in C yields a result 1 less than printed result (expected due to overflow diff in 2's complement and 1's complement)
 extern int check_overflow(char *op1, char *op2, char *sum); //Correct (checked)
@@ -85,8 +85,8 @@ int main(){
     binstr(x1s, n, x_str);
     binstr(y1s, n, y_str);
 
-    printf("X:   %s (%d)\n", x_str, x);
-    printf("Y:   %s (%d) +\n", y_str, y);
+    printf("1st number:   %s (%d)\n", x_str, x);
+    printf("2nd number:   %s (%d) +\n", y_str, y);
 
     for (int k=0; k<n; k++)
         printf("-");
@@ -94,16 +94,8 @@ int main(){
 
     perform_addition(n, x_str, y_str, z1_str, c1_str);
 
-    printf("C1: %s\n", c1_str);
-    printf("Z1:  %s (%d)", z1_str, str2int(z1_str, n));
-
-
-
-    
-    //Above is correct
-
-
-
+    printf("Carry1:      %s\n", c1_str);
+    printf("Result1:      %s (%d)", z1_str, str2int(z1_str, n));
 
     if (check_carryout(c1_str)) { // Carry out!
 
@@ -113,14 +105,14 @@ int main(){
 
        perform_addition(n, z1_str, one_str, z2_str, c2_str);
 
-       printf("     %s +       <-- due to carry out\n", one_str);
+       printf("              %s +       <-- due to carry out\n", one_str);
 
        for (int k=0; k<n; k++)
            printf("-");
        printf("----------------\n");
 
-       printf("C2: %s\n", c2_str);
-       printf("Z2:  %s", z2_str); 
+       printf("Carry2:      %s\n", c2_str);
+       printf("Result2:      %s", z2_str); 
  
        // Check for overflow
        if (check_overflow(x_str, y_str, z2_str)) {
