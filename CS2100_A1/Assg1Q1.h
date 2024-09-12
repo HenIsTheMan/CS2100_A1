@@ -201,7 +201,7 @@ int check_carryout(char *carry_str)
  **/
 int check_overflow(char *op1, char *op2, char *sum)
 {
-    return op1[0] == op2[1] && op1[0] != sum[0]; //If op1 and op2 have the same sign which is diff from that of sum, overflow has occurred
+    return op1[0] == op2[0] && op1[0] != sum[0]; //If op1 and op2 have the same sign which is diff from that of sum, overflow has occurred
 }
 
 /**

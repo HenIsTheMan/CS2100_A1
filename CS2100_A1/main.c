@@ -20,7 +20,8 @@ extern int validate_1s_complement(int x, int n); //Correct (checked by testing s
 
 extern int check_carryout(char *carry_str);
 
-extern int check_overflow(char *op1, char *op2, char *sum);
+//Adding same vals in C yields a result 1 less than printed result (expected due to overflow diff in 2's complement and 1's complement)
+extern int check_overflow(char *op1, char *op2, char *sum); //Correct (checked)
 
 extern int perform_addition(int n, char *x, char *y, char *z, char *c); //Correct (checked)
 //*/
