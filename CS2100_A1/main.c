@@ -22,7 +22,7 @@ extern int check_carryout(char *carry_str);
 
 extern int check_overflow(char *op1, char *op2, char *sum);
 
-extern int perform_addition(int n, char *x, char *y, char *z, char *c);
+extern int perform_addition(int n, char *x, char *y, char *z, char *c); //Correct (checked)
 //*/
 
 #include "Assg1Q1.h"
@@ -84,20 +84,6 @@ int main(){
     binstr(x1s, n, x_str);
     binstr(y1s, n, y_str);
 
-    printf("Converted X:   %s (%d)\n", x_str, x);
-    printf("Converted Y:   %s (%d) +\n", y_str, y);
-
-
-
-
-    //Above is correct
-
-
-
-
-    perform_addition(n, x_str, y_str, z1_str, c1_str);
-
-    // Print what we had achieved so far.
     printf("X:   %s (%d)\n", x_str, x);
     printf("Y:   %s (%d) +\n", y_str, y);
 
@@ -105,8 +91,18 @@ int main(){
         printf("-");
     printf("----------------\n");
 
+    perform_addition(n, x_str, y_str, z1_str, c1_str);
+
     printf("C1: %s\n", c1_str);
     printf("Z1:  %s (%d)", z1_str, str2int(z1_str, n));
+
+
+
+    
+    //Above is correct (except for str2int)
+
+
+
 
     if (check_carryout(c1_str)) { // Carry out!
 
