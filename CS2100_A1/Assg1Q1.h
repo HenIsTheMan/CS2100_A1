@@ -61,15 +61,15 @@ void binstr(int i, int n, char *s)
     }
 
     int index;
-    int limit = 32 - n;
+    int limit = 31 - n; //31 since 32 bits (indices are 0 - 31)
 
     if(isNegative){ //Branch outside loop
-        for(index = 32; index > limit; --index){ //index = 32 since 32 bits
+        for(index = 31; index > limit; --index){
             s[index] = (i % 2 == 1) ? '0' : '1'; //For flipping all bits since -ve 1's complement val
             i /= 2;
         }
     } else{
-        for(index = 32; index > limit; --index){ //index = 32 since 32 bits
+        for(index = 31; index > limit; --index){ //...
             s[index] = (i % 2 == 1) ? '1' : '0';
             i /= 2;
         }
@@ -80,6 +80,8 @@ void binstr(int i, int n, char *s)
         s[index] = '0';
     }
     //*/
+
+    s[32] = '\0'; //Null termination
 }
 
 /**
@@ -103,12 +105,18 @@ void binstr(int i, int n, char *s)
  **/
 int str2int(char *s, int n)
 {
-    if(n > 32){
+    if(n > 32){ //Input validation
         return INT_MIN;
     }
 
     int i;
     int isNegative = 0;
+
+    for(i = 0; i < n; ++i){ //Input validation
+        if(s[i] < 48 || s[i] > 49){ //If neither '0' nor '1'...
+            return INT_MIN;
+        }
+    }
 
     if(s[0] == '1'){ //If sign bit is 1...
         isNegative = 1;
@@ -121,10 +129,6 @@ int str2int(char *s, int n)
     int myVal = 0;
 
     for(i = n - 1; i >= 0; --i){
-        if(s[i] < 48 || s[i] > 49){ //If neither '0' nor '1'...
-            return INT_MIN;
-        }
-
         myVal += (s[i] - 48) << (n - i);
     }
 
@@ -251,6 +255,13 @@ int perform_addition(int n, char *x, char *y, char *z, char *c)
             c[i] = '0';
         }
     }
+
+    //* Null-termination
+    x[n] = '\0';
+    y[n] = '\0';
+    z[n] = '\0';
+    c[n] = '\0';
+    //*/
 
     return 0;
 
