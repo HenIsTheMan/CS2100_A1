@@ -57,7 +57,7 @@ void binstr(int i, int n, char *s)
 
     if(i < 0){
         isNegative = 1;
-        i = -i;
+        i = -(i + 1); //Get +ve equivalent (e.g. i is -3 if user input was -2 so need to get 2 from -3)
     }
 
     int index;
