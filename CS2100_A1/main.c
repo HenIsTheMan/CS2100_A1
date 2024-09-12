@@ -14,7 +14,7 @@ extern int twos_to_ones(int x); //Correct (checked by ensuring output -ve int [s
 
 extern void binstr(int i, int n, char *s); //Correct (checked by comparing bin representations of +ve val and its -ve counterpart)
 
-extern int str2int(char *s, int n);
+extern int str2int(char *s, int n); //Correct (checked)
 
 extern int validate_1s_complement(int x, int n); //Correct (checked by testing smallest and largest input for 2 and 32 bits)
 
@@ -99,7 +99,7 @@ int main(){
 
 
     
-    //Above is correct (except for str2int)
+    //Above is correct
 
 
 

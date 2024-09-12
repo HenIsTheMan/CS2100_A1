@@ -105,36 +105,33 @@ void binstr(int i, int n, char *s)
  **/
 int str2int(char *s, int n)
 {
-    return 0;
-
     if(n > 32){ //Input validation
-        return -(1 << (n - 1)); //This -ve val is within range of 2's complement but not that of 1's complement
+        return -2147483647 - 1; //This -ve val is within range of 2's complement but not that of 1's complement
     }
 
     int i;
-    int isNegative = 0;
 
     for(i = 0; i < n; ++i){ //Input validation
         if(s[i] < 48 || s[i] > 49){ //If neither '0' nor '1'...
-            return -(1 << (n - 1)); //This -ve val is within range of 2's complement but not that of 1's complement
-        }
-    }
-
-    if(s[0] == '1'){ //If sign bit is 1...
-        isNegative = 1;
-
-        for(i = 0; i < n; ++i){ //Convert to +ve val in bin
-            s[i] = (s[i] == '1') ? '0' : '1'; //For flipping all bits since -ve 1's complement val
+            return -2147483647 - 1; //This -ve val is within range of 2's complement but not that of 1's complement
         }
     }
 
     int myVal = 0;
 
-    for(i = n - 1; i >= 0; --i){
-        myVal += (s[i] - 48) << (n - i);
-    }
+    if(s[31 - n + 1] == '1'){ //If sign bit is 1 (-ve, can also check s[0] since sign-extended)...
+        for(i = 31; i > 31 - n; --i){
+            myVal += !(s[i] - 48) << (31 - i);
+        }
 
-    return isNegative ? -myVal : myVal; //Result will be in 2's complement
+        return -myVal; //Result in 1's complement but stored in 2's complement int
+    } else{
+        for(i = 31; i > 31 - n; --i){
+            myVal += (s[i] - 48) << (31 - i);
+        }
+
+        return myVal; //...
+    }
 }
 
 /**
