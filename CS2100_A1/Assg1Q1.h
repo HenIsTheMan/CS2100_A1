@@ -242,7 +242,18 @@ int check_overflow(char *op1, char *op2, char *sum)
  **/
 int perform_addition(int n, char *x, char *y, char *z, char *c)
 {
-    //< Your code here...>
+    for(int i = n - 1; i >= 0; --i){
+        if(x[i] == '1' && y[i] == '1'){
+            z[i] = '0';
+            c[i] = '1';
+        } else{
+            z[i] = x[i] + y[i] - 48; //Same as (x[i] - 48) + (y[i] - 48) + 48
+            c[i] = '0';
+        }
+    }
+
     return 0;
+
+    //return -1;??
 }
 
