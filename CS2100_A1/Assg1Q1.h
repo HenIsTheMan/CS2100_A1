@@ -77,7 +77,7 @@ void binstr(int i, int n, char *s)
 
     //* For sign extension
     for(index = limit; index >= 0; --index){
-        s[index] = '0';
+        s[index] = s[limit + 1];
     }
     //*/
 
