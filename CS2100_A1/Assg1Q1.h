@@ -106,7 +106,7 @@ void binstr(int i, int n, char *s)
 int str2int(char *s, int n)
 {
     if(n > 32){ //Input validation
-        return INT_MIN;
+        return -(1 << (n - 1)); //This -ve val is within range of 2's complement but not that of 1's complement
     }
 
     int i;
@@ -114,7 +114,7 @@ int str2int(char *s, int n)
 
     for(i = 0; i < n; ++i){ //Input validation
         if(s[i] < 48 || s[i] > 49){ //If neither '0' nor '1'...
-            return INT_MIN;
+            return -(1 << (n - 1)); //This -ve val is within range of 2's complement but not that of 1's complement
         }
     }
 
@@ -178,13 +178,7 @@ int validate_1s_complement(int x, int n)
  **/
 int check_carryout(char *carry_str)
 {
-    /* Just in case
-    if(carry_str[0] < 48 || carry_str[0] > 49){ //If neither '0' nor '1'...
-        return INT_MIN;
-    }
-    //*/
-
-    return carry_str[0] - 48;
+    return carry_str[0] - 48; //carry_str is a result of perform_addition so no need to check for errors
 }
 
 /**
