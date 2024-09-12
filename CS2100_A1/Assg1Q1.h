@@ -8,9 +8,9 @@
 // Failure to full in the details correctly will be penalised.
 //
 
-const char *student_number = "<fill in your student number here>";
-const char *student_name = "<fill in your name here>";
-const char *student_tut_grp = "<fill in your tutorial group ID here>";
+const char *student_number = "A0308292A";
+const char *student_name = "LING GUAN YU";
+const char *student_tut_grp = "T36";
 
 #include <stdio.h>
 
