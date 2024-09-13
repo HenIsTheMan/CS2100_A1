@@ -142,4 +142,5 @@ int main(){
 	(void)printf("almostFunc2: %d\n", almostFunc2(5));
 	(void)printf("almostFunc3: %d\n", almostFunc3(5));
 	(void)printf("almostFunc4: %d\n", almostFunc4(5));
+	(void)printf("almostFunc4: %d\n", func(5));
 }
