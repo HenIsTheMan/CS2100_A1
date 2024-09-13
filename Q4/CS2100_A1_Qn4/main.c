@@ -2,7 +2,7 @@
 
 #include <stdio.h>
 
-void funcDirect0(int a0){
+int almostFunc0(int a0){
 	int t1; //Technically not in given qn
 
 	int t0 = 32; //li $t0, 32
@@ -38,10 +38,10 @@ $L3:
 
 	goto $L7; //j $L7
 $L8:
-	return; //jr $ra
+	return v0; //jr $ra
 }
 
-void funcDirect1(int a0){
+int almostFunc1(int a0){
 	int i = 32; //Originally $t0
 
 	int count = 0; //Originally $v0
@@ -69,10 +69,10 @@ $L3:
 
 	goto $L7;
 $L8:
-	return;
+	return count;
 }
 
-void funcDirect2(int a0){
+int almostFunc2(int a0){
 	int i = 32;
 	int count = 0;
 
@@ -93,7 +93,7 @@ void funcDirect2(int a0){
 	$L7:
 		//* $L7
 		if(i == 0){
-			return; //$L8
+			return count; //$L8
 		}
 
 		a0 <<= 1;
@@ -101,7 +101,7 @@ void funcDirect2(int a0){
 	}
 }
 
-void funcDirect3(int a0){
+int almostFunc3(int a0){
 	int i = 32;
 	int count = 0;
 
@@ -111,14 +111,14 @@ void funcDirect3(int a0){
 		}
 
 		if(--i == 0){
-			return;
+			return count;
 		}
 
 		a0 <<= 1;
 	}
 }
 
-int almostFunc(int a0){
+int almostFunc4(int a0){
 	int count = 0;
 
 	for(int i = 32;;){ //Especially so if i used to be $t0, a temp register
@@ -137,5 +137,9 @@ int almostFunc(int a0){
 }
 
 int main(){
-	(void)printf("%d\n", almostFunc(5));
+	(void)printf("almostFunc0: %d\n", almostFunc0(5));
+	(void)printf("almostFunc1: %d\n", almostFunc1(5));
+	(void)printf("almostFunc2: %d\n", almostFunc2(5));
+	(void)printf("almostFunc3: %d\n", almostFunc3(5));
+	(void)printf("almostFunc4: %d\n", almostFunc4(5));
 }
