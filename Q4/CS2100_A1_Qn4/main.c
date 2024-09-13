@@ -1,5 +1,7 @@
 #include "Assg1Q4ans.h"
 
+#include <stdio.h>
+
 void funcDirect0(int a0){
 	int t1; //Technically not in given qn
 
@@ -40,9 +42,9 @@ $L8:
 }
 
 void funcDirect1(int a0){
-	int i = 32; //Originally t0
+	int i = 32; //Originally $t0
 
-	int count = 0; //Originally v0
+	int count = 0; //Originally $v0
 
 	goto $L3;
 
@@ -116,6 +118,24 @@ void funcDirect3(int a0){
 	}
 }
 
+int almostFunc(int a0){
+	int count = 0;
+
+	for(int i = 32;;){ //Especially so if i used to be $t0, a temp register
+		if(a0 >= 0){
+			++count;
+		}
+
+		if(--i == 0){
+			break; //Since return is below now
+		}
+
+		a0 <<= 1;
+	}
+
+	return count;
+}
+
 int main(){
-	funcDirect3(5);
+	(void)printf("%d\n", almostFunc(5));
 }
