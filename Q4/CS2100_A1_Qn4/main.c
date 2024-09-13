@@ -137,12 +137,39 @@ int almostFunc4(int a0){
 }
 
 int main(){
-	const int commonVal = 5;
+	int i;
+	int funcResult;
+	int almostFunc0Result;
+	int almostFunc1Result;
+	int almostFunc2Result;
+	int almostFunc3Result;
+	int almostFunc4Result;
 
-	(void)printf("almostFunc0: %d\n", almostFunc0(commonVal));
-	(void)printf("almostFunc1: %d\n", almostFunc1(commonVal));
-	(void)printf("almostFunc2: %d\n", almostFunc2(commonVal));
-	(void)printf("almostFunc3: %d\n", almostFunc3(commonVal));
-	(void)printf("almostFunc4: %d\n", almostFunc4(commonVal));
-	(void)printf("almostFunc4: %d\n", func(commonVal));
+	for(long long int index = -1; index <= (long)9999999; ++index){ //Only 1 -ve val as only counting when a0 >= 0 so -1 represents all -ve vals
+		i = (int)index;
+
+		funcResult = func(i);
+		almostFunc0Result = almostFunc0(i);
+		almostFunc1Result = almostFunc1(i);
+		almostFunc2Result = almostFunc2(i);
+		almostFunc3Result = almostFunc3(i);
+		almostFunc4Result = almostFunc4(i);
+
+		if(funcResult != almostFunc0Result
+			|| funcResult != almostFunc1Result
+			|| funcResult != almostFunc2Result
+			|| funcResult != almostFunc3Result
+			|| funcResult != almostFunc4Result
+		){
+			(void)printf("almostFunc0: %d\n", almostFunc0Result);
+			(void)printf("almostFunc1: %d\n", almostFunc1Result);
+			(void)printf("almostFunc2: %d\n", almostFunc2Result);
+			(void)printf("almostFunc3: %d\n", almostFunc3Result);
+			(void)printf("almostFunc4: %d\n", almostFunc4Result);
+			(void)printf("func: %d\n", funcResult);
+			return -1;
+		}
+	}
+
+	(void)printf("VERIFIED");
 }
