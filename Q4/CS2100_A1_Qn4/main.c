@@ -82,7 +82,7 @@ void funcDirect2(int a0){
 			--i;
 			//*/
 
-			goto $L7; //Since $L7 follows $L6 in original
+			goto $L7; //Since $L7 follows $L6 in original (can use else instead)
 		}
 
 		--i;
@@ -99,6 +99,23 @@ void funcDirect2(int a0){
 	}
 }
 
+void funcDirect3(int a0){
+	int i = 32;
+	int count = 0;
+
+	while(1){
+		if(a0 >= 0){
+			++count;
+		}
+
+		if(--i == 0){
+			return;
+		}
+
+		a0 <<= 1;
+	}
+}
+
 int main(){
-	funcDirect2(5);
+	funcDirect3(5);
 }
