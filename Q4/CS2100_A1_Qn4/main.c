@@ -39,6 +39,37 @@ $L8:
 	return; //jr $ra
 }
 
+void funcDirect1(int a0){
+	int i = 32; //Originally t0
+
+	int count = 0; //Originally v0
+
+	goto $L3; //j $L3
+
+$L6:
+	++count;
+
+	--i;
+
+$L7:
+	if(i == 0){
+		goto $L8;
+	}
+
+	a0 <<= 1;
+
+$L3:
+	if(a0 >= 0){
+		goto $L6;
+	}
+
+	--i;
+
+	goto $L7;
+$L8:
+	return;
+}
+
 int main(){
-	funcDirect0(5);
+	funcDirect1(5);
 }
