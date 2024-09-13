@@ -44,7 +44,7 @@ void funcDirect1(int a0){
 
 	int count = 0; //Originally v0
 
-	goto $L3; //j $L3
+	goto $L3;
 
 $L6:
 	++count;
@@ -70,6 +70,35 @@ $L8:
 	return;
 }
 
+void funcDirect2(int a0){
+	int i = 32;
+	int count = 0;
+
+	while(1){
+		//* $L3 without "goto $L7;" at the end
+		if(a0 >= 0){
+			//* $L6
+			++count;
+			--i;
+			//*/
+
+			goto $L7; //Since $L7 follows $L6 in original
+		}
+
+		--i;
+		//*/
+
+	$L7:
+		//* $L7
+		if(i == 0){
+			return; //$L8
+		}
+
+		a0 <<= 1;
+		//*/
+	}
+}
+
 int main(){
-	funcDirect1(5);
+	funcDirect2(5);
 }
