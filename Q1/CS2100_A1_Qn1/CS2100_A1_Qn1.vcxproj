@@ -139,7 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Assg1Q1.h" />
+    <ClInclude Include="Assg1Q1ans.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c" />
