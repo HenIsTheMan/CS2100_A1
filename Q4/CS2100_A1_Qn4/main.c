@@ -137,10 +137,12 @@ int almostFunc4(int a0){
 }
 
 int main(){
-	(void)printf("almostFunc0: %d\n", almostFunc0(5));
-	(void)printf("almostFunc1: %d\n", almostFunc1(5));
-	(void)printf("almostFunc2: %d\n", almostFunc2(5));
-	(void)printf("almostFunc3: %d\n", almostFunc3(5));
-	(void)printf("almostFunc4: %d\n", almostFunc4(5));
-	(void)printf("almostFunc4: %d\n", func(5));
+	const int commonVal = 5;
+
+	(void)printf("almostFunc0: %d\n", almostFunc0(commonVal));
+	(void)printf("almostFunc1: %d\n", almostFunc1(commonVal));
+	(void)printf("almostFunc2: %d\n", almostFunc2(commonVal));
+	(void)printf("almostFunc3: %d\n", almostFunc3(commonVal));
+	(void)printf("almostFunc4: %d\n", almostFunc4(commonVal));
+	(void)printf("almostFunc4: %d\n", func(commonVal));
 }
