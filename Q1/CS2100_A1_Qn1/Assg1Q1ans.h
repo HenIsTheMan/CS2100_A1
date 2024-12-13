@@ -25,12 +25,7 @@ const char *student_tut_grp = "T36";
  **/
 int twos_to_ones(int x)
 {
-    if(x < 0){ //Only need to do sth when x is -ve
-        x = ~x + 1; //Negate -ve val to yield +ve val, done this way since 2's complement
-        x = ~x; //Get -ve val in 1's complement
-    }
-
-    return x;
+    return x < 0 ? x - 1 : x; //Only need to do sth when x is -ve
 }
 
 /**
@@ -52,36 +47,12 @@ int twos_to_ones(int x)
  *
  **/
 void binstr(int i, int n, char *s)
-{
-    int isNegative = 0;
+{ //i is in 2's complement representation by default unless twos_to_ones(i) was used
+    s[n] = '\0'; //Null termination, [n] since n + 1 chars
 
-    if(i < 0){
-        isNegative = 1;
-        i = -(i + 1); //Get +ve equivalent (e.g. i is -3 if user input was -2 so need to get 2 from -3)
+    for(int index = n - 1; index >= 0; --index, i >>= 1){
+        s[index] = (i & 1) + '0';
     }
-
-    int index;
-    int limit = 31 - n; //31 since 32 bits (indices are 0 - 31)
-
-    if(isNegative){ //Branch outside loop
-        for(index = 31; index > limit; --index){
-            s[index] = (i % 2 == 1) ? '0' : '1'; //For flipping all bits since -ve 1's complement val
-            i /= 2;
-        }
-    } else{
-        for(index = 31; index > limit; --index){ //...
-            s[index] = (i % 2 == 1) ? '1' : '0';
-            i /= 2;
-        }
-    }
-
-    //* For sign extension
-    for(index = limit; index >= 0; --index){
-        s[index] = s[limit + 1];
-    }
-    //*/
-
-    s[32] = '\0'; //Null termination
 }
 
 /**
