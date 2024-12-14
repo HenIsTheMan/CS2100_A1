@@ -6,6 +6,10 @@ Largest input for 2 bits: 1
 Smallest input for 32 bits: -2147483647
 Largest input for 32 bits: 2147483647
 
+The implementations of all funcs allow for n to be smaller than length of char arr(s)
+(only the front part of char arr(s) are worked on so no need sign extension)
+(printf will print until '\0' is encountered [done in all implementations] so no need to bother with the redundant bits at the back [if any])
+
 extern const char *student_number;
 extern const char *student_name;
 extern const char *student_tut_grp;
@@ -33,6 +37,7 @@ int main(){
     int x1s, y1s;
     char x_str[33], y_str[33], z1_str[33], z2_str[33], one_str[33]; 
     char c1_str[34], c2_str[34]; // Holds the carries. It is 33 bits because the MSB is the carry out.
+    //NO it's actually 33 bits because the LSB is the 1st carry-in of 0
 
     printf("CS2100 Assignment 1 Question 1\n");
     printf("------------------------------\n");
@@ -45,7 +50,7 @@ int main(){
     scanf_s("%d", &n);
 
     // Check if n is valid.
-    if ((n < 2) || (n>33)) {
+    if ((n < 2) || (n > 33)) {
        printf("Invalid number of bits. Unable to proceed. Exiting...\n");
        return -1;
     }
@@ -85,6 +90,10 @@ int main(){
     binstr(x1s, n, x_str);
     binstr(y1s, n, y_str);
 
+    perform_addition(n, x_str, y_str, z1_str, c1_str);
+
+    printf("Carry1:      %s\n", c1_str);
+
     printf("1st number:   %s (%d)\n", x_str, x);
     printf("2nd number:   %s (%d) +\n", y_str, y);
 
@@ -92,9 +101,6 @@ int main(){
         printf("-");
     printf("----------------\n");
 
-    perform_addition(n, x_str, y_str, z1_str, c1_str);
-
-    printf("Carry1:      %s\n", c1_str);
     printf("Result1:      %s (%d)", z1_str, str2int(z1_str, n));
 
     if (check_carryout(c1_str)) { // Carry out!
