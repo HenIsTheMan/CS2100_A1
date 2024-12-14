@@ -199,17 +199,16 @@ int check_overflow(char *op1, char *op2, char *sum)
  *
  **/
 int perform_addition(int n, char *x, char *y, char *z, char *c)
-{
+{ //+ 1 to LSB (since 1's complement) when there is a carry out (discarded) is handled in main()
     if(n < 2 || n > 32){ //Input validation (just to fit in -1)
         return -1;
     }
-    
-    c[32] = '0'; //Earliest carry in is always 0 (since no digits to add before LSB of bins)
 
-    int i;
+    c[n] = '0'; //Earliest carry in (not stated in the brief above haiz) is always 0 (must be done before the for loop)
+
     int colAdditionResult; //Range of [0, 3]
 
-    for(i = 31; i > 31 - n; --i){
+    for(int i = n - 1; i >= 0; --i){
         colAdditionResult = x[i] + y[i] + c[i + 1] - 144; //Same as (x[i] - 48) + (y[i] - 48) + (c[i + 1] - 48)
 
         if(colAdditionResult < 2){ //No carry out (colAdditionResult == 0 || colAdditionResult == 1)
@@ -221,22 +220,9 @@ int perform_addition(int n, char *x, char *y, char *z, char *c)
         }
     }
 
-    //+ 1 to LSB (since 1's complement) when there is a carry out (discarded) is handled in main()
-
-    for(i = 0; i <= 31 - n; ++i){
-        //For sign extension
-        //(since result is signed even though addition is unsigned)
-        //(for printing correct representation of same val in 32 bits instead of for calculations)
-        z[i] = z[31 - n + 1];
-
-        //Fill in remaining bits for c by extension for check_carryout to work without n param
-        //Will not affect calculations as only n bits of c from the right are used
-        c[i] = c[31 - n + 1];
-    }
-
     //* Null-termination
-    z[32] = '\0';
-    c[33] = '\0';
+    z[n] = '\0';
+    c[n + 1] = '\0';
     //*/
 
     return 0;
