@@ -75,34 +75,24 @@ void binstr(int i, int n, char *s)
  *
  **/
 int str2int(char *s, int n)
-{
+{ //s is n + 1 chars long including null-terminator
     if(n > 32){ //Input validation
         return -2147483647 - 1; //This -ve val is within range of 2's complement but not that of 1's complement
     }
 
-    int i;
+    int result = 0;
 
-    for(i = 0; i < n; ++i){ //Input validation
-        if(s[i] < 48 || s[i] > 49){ //If neither '0' nor '1'...
+    for(int index = n - 1; index >= 0; --index){
+        if(s[index] < 48 || s[index] > 49){ //Input validation
             return -2147483647 - 1; //This -ve val is within range of 2's complement but not that of 1's complement
+        } else if(s[index] == '1'){ //Since '0' has no val contribution to result and pos of '1' in s is accted for
+            result |= 1 << (n - 1 - index);
         }
     }
 
-    int myVal = 0;
-
-    if(s[31 - n + 1] == '1'){ //If sign bit is 1 (-ve, can also check s[0] since sign-extended)...
-        for(i = 31; i > 31 - n; --i){
-            myVal += !(s[i] - 48) << (31 - i);
-        }
-
-        return -myVal; //Result in 1's complement but stored in 2's complement int
-    } else{
-        for(i = 31; i > 31 - n; --i){
-            myVal += (s[i] - 48) << (31 - i);
-        }
-
-        return myVal; //...
-    }
+    //Accts for s being read as 2's complement when converted to int in C++
+    //(simpler to modify return val than to modify s)
+    return result < 0 ? result + 1 : result;
 }
 
 /**
